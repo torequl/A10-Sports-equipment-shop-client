@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import AllEquipment from "../pages/AllEquipment";
+import AddEquipment from "../pages/AddEquipment";
 
 const Router = createBrowserRouter([
     {
@@ -29,8 +30,13 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/allEquipments',
-                element: <AllEquipment/>
+                element: <AllEquipment/>,
+                loader: () => fetch('http://localhost:5000/equipments')
             },
+            {
+                path: '/addEquipment',
+                element: <AddEquipment/>
+            }
         ]
     }
 ])

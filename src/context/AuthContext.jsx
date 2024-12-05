@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import auth from "../firebase/Firebase.config";
+import auth from "../firebase.config";
+
 
 
 // eslint-disable-next-line react-refresh/only-export-components

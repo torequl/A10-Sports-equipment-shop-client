@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { authContext } from "../context/AuthContext";
 
 const SignUp = () => {
+
+    const { handleRegister, handelGoogleLogin } = useContext(authContext)
 
     const handleUserSignUp = e => {
         e.preventDefault();
@@ -8,7 +12,15 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const formData = { email, password, name }
-        console.log(formData);
+        handleRegister(email, password)
+            .then(user => console.log(user))
+            .catch(error => console.log(error.message))
+    }
+
+    const googleLogin = () => {
+        handelGoogleLogin()
+        .then(user => console.log(user))
+        .catch(error => console.log(error.message))
     }
 
     return (
@@ -55,7 +67,7 @@ const SignUp = () => {
                             </form>
                             <div className="divider">OR</div>
                             <div className="flex flex-col items-center">
-                                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                                <button onClick={googleLogin} className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                                     <div className="bg-white p-2 rounded-full">
                                         <svg className="w-4" viewBox="0 0 533.5 544.3">
                                             <path
