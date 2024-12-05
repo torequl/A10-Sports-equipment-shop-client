@@ -1,0 +1,77 @@
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import auth from "../firebase/Firebase.config";
+
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const authContext = createContext();
+
+// eslint-disable-next-line react/prop-types
+const AuthContext = ({ children }) => {
+
+    const [loading, setLoading] = useState(true);
+
+    const [user, setUser] = useState('');
+
+    const googleProvider = new GoogleAuthProvider();
+
+    // TODO: Sign Up with Email And Password
+    const handleRegister = (email, password) => {
+        setLoading(true)
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    // TODO: Login with Email And Password
+    const handelLogin = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+
+    }
+
+
+    // Google Login 
+    const handelGoogleLogin = () => {
+        setLoading(true)
+        return signInWithPopup(auth, googleProvider)
+    }
+
+    // Forgot password
+    const handelForgetPassword = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
+    // Update Profile 
+    const updateUserProfile = (updateData) => {
+        return updateProfile(auth.currentUser, updateData);
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+            setLoading(false)
+            return () => {
+                unsubscribe()
+            }
+        })
+    })
+
+
+    const authInfo = {
+        handleRegister,
+        handelLogin,
+        handelGoogleLogin,
+        handelForgetPassword,
+        updateUserProfile,
+        user,
+        loading,
+    }
+
+    return (
+
+        <authContext.Provider value={authInfo}>
+            {children}
+        </authContext.Provider>
+    );
+};
+
+export default AuthContext;
