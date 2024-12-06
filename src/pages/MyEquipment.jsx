@@ -1,16 +1,30 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const MyEquipment = () => {
     const loadedUserAddedData = useLoaderData();
-    const [userEquipments, setuserEquipments] = useState(loadedUserAddedData)
+    const [userEquipments, setUserEquipments] = useState(loadedUserAddedData);
+
+    const handelDelete = id => {
+        console.log(id);
+        fetch(`http://localhost:5000/delete/${id}`,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            const remaining = userEquipments.filter(data => data._id !== id);
+            setUserEquipments(remaining)
+        })
+    }
 
     return (
         <>
             <h2>My Equipments {userEquipments.length}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 my-10">
+            <div className="flex flex-wrap gap-5 my-10">
                 {
                     userEquipments.map(data =>
+
                         <div key={data._id} className="max-w-sm mx-auto bg-base-100 border rounded-md overflow-hidden">
                             <img
                                 src={data.imageUrl}
@@ -39,15 +53,16 @@ const MyEquipment = () => {
                                 </div>
 
                                 <div className="flex justify-between">
-                                    <button
+                                    <Link
+                                        to={`/update/${data._id}`}
                                         className="btn btn-primary btn-sm"
                                     // onClick={() => onUpdate(data._id)}
                                     >
                                         Update
-                                    </button>
+                                    </Link>
                                     <button
                                         className="btn btn-error btn-sm"
-                                    // onClick={() => onDelete(data._id)}
+                                        onClick={() => handelDelete(data._id)}
                                     >
                                         Delete
                                     </button>

@@ -12,11 +12,11 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/allEquipments'>All Equipment</Link></li>
         <li><Link to='/addEquipment'>Add Equipment</Link></li>
-        <li><Link to={`/myEquipments/${user.email}`}>My Equipment</Link></li>
+        <li><Link to={user?.email}>My Equipment</Link></li>
     </>
 
     return (
-        <div className="bg-orange-50 sticky top-0">
+        <div className="bg-orange-50 sticky top-0 z-50">
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
