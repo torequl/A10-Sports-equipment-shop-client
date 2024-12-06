@@ -12,6 +12,7 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/allEquipments'>All Equipment</Link></li>
         <li><Link to='/addEquipment'>Add Equipment</Link></li>
+        <li><Link to={`/myEquipments/${user.email}`}>My Equipment</Link></li>
     </>
 
     return (

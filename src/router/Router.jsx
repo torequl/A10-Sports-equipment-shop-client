@@ -6,6 +6,8 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import AllEquipment from "../pages/AllEquipment";
 import AddEquipment from "../pages/AddEquipment";
+import ViewDetails from "../pages/ViewDetails";
+import MyEquipment from "../pages/MyEquipment";
 
 const Router = createBrowserRouter([
     {
@@ -14,28 +16,38 @@ const Router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Layout/>,
+        element: <Layout />,
         children: [
             {
                 path: '/',
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: 'login',
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: '/signup',
-                element: <SignUp/>
+                element: <SignUp />
             },
             {
                 path: '/allEquipments',
-                element: <AllEquipment/>,
+                element: <AllEquipment />,
                 loader: () => fetch('http://localhost:5000/equipments')
             },
             {
                 path: '/addEquipment',
-                element: <AddEquipment/>
+                element: <AddEquipment />
+            },
+            {
+                path: '/details/:id',
+                element: <ViewDetails />,
+                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+            },
+            {
+                path: '/myEquipments/:email',
+                element: <MyEquipment />,
+                loader: ({ params }) => fetch(`http://localhost:5000/myEquipments/${params.email}`)
             }
         ]
     }

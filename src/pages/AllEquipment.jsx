@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const AllEquipment = () => {
 
@@ -38,7 +38,7 @@ const AllEquipment = () => {
                                     <td>{e.processingTime}</td>
                                     <td>{e.price}</td>
                                     <td>
-                                        <button className="btn btn-xs">View Details</button>
+                                        <Link to={`/details/${e._id}`} className="btn btn-xs">View Details</Link>
                                     </td>
                                 </tr>
                             )

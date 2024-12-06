@@ -6,35 +6,41 @@ const AddEquipment = () => {
 
     const { user } = useContext(authContext)
 
-    console.log(user);
-
-    const [formData, setFormData] = useState({
-        imageUrl: '',
-        itemName: '',
-        categoryName: '',
-        description: '',
-        price: '',
-        rating: '',
-        customization: '',
-        processingTime: '',
-        stockStatus: '',
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form Submitted:', { ...formData });
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const imageUrl = form.imageUrl.value;
+        const itemName = form.itemName.value;
+        const categoryName = form.categoryName.value;
+        const description = form.description.value;
+        const price = form.price.value;
+        const rating = form.rating.value;
+        const customization = form.customization.value;
+        const processingTime = form.processingTime.value;
+        const stockStatus = form.stockStatus.value;
+
+        const formData = {
+            name,
+            email,
+            imageUrl,
+            itemName,
+            categoryName,
+            description,
+            price,
+            rating,
+            customization,
+            processingTime,
+            stockStatus
+        }
 
         fetch('http://localhost:5000/equipments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ ...formData })
+            body: JSON.stringify(formData)
         })
             .then(res => res.json())
             .then(data => {
@@ -57,10 +63,8 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="imageUrl"
-                            onChange={handleChange}
                             className="input input-bordered"
                             placeholder="Enter image URL"
-                            required
                         />
                     </div>
 
@@ -72,10 +76,8 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="itemName"
-                            onChange={handleChange}
                             className="input input-bordered"
                             placeholder="Enter item name"
-                            required
                         />
                     </div>
                 </div>
@@ -89,10 +91,8 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="categoryName"
-                            onChange={handleChange}
                             className="input input-bordered "
                             placeholder="Enter category name"
-                            required
                         />
                     </div>
 
@@ -103,10 +103,8 @@ const AddEquipment = () => {
                         </label>
                         <textarea
                             name="description"
-                            onChange={handleChange}
                             className="textarea textarea-bordered "
                             placeholder="Enter description"
-                            required
                         ></textarea>
                     </div>
                 </div>
@@ -120,10 +118,8 @@ const AddEquipment = () => {
                         <input
                             type="number"
                             name="price"
-                            onChange={handleChange}
                             className="input input-bordered "
                             placeholder="Enter price"
-                            required
                         />
                     </div>
 
@@ -135,12 +131,10 @@ const AddEquipment = () => {
                         <input
                             type="number"
                             name="rating"
-                            onChange={handleChange}
                             className="input input-bordered "
                             placeholder="Enter rating (1-5)"
                             min="1"
                             max="5"
-                            required
                         />
                     </div>
                 </div>
@@ -154,7 +148,6 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="customization"
-                            onChange={handleChange}
                             className="input input-bordered "
                             placeholder="Enter customization options"
                         />
@@ -168,10 +161,8 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="processingTime"
-                            onChange={handleChange}
                             className="input input-bordered "
                             placeholder="Enter processing time (e.g., 3-5 days)"
-                            required
                         />
                     </div>
                 </div>
@@ -185,10 +176,10 @@ const AddEquipment = () => {
                         <input
                             type="number"
                             name="stockStatus"
-                            onChange={handleChange}
+
                             className="input input-bordered "
                             placeholder="Enter available quantity"
-                            required
+
                         />
                     </div>
 
@@ -199,6 +190,8 @@ const AddEquipment = () => {
                         </label>
                         <input
                             type="email"
+                            name="email"
+
                             value={user?.email}
                             readOnly
                             className="input input-bordered  bg-gray-100"
@@ -213,6 +206,8 @@ const AddEquipment = () => {
                     </label>
                     <input
                         type="text"
+                        name="name"
+
                         value={user?.displayName}
                         readOnly
                         className="input input-bordered  bg-gray-100"
