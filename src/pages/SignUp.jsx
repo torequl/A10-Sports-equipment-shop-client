@@ -15,9 +15,7 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photoUrl = form.photoUrl.value;
-        const formData = { email, password, name, photoUrl }
-
-        console.log(formData);
+        const formData = { email, name, photoUrl }
 
         if (password.length < 6) {
             toast.warn('Password at least 6 character')
@@ -32,7 +30,17 @@ const SignUp = () => {
             return;
         }
         handleRegister(email, password)
-            .then(( user ) => {
+            .then(({ user }) => {
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(res => res.json())
+                    .then(data => console.log('User created ',data));
+
                 toast.success(user.email + " Sign-Up Successfully");
                 updateUserProfile({
                     displayName: name,

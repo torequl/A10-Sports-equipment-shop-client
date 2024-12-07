@@ -45,14 +45,14 @@ const AddEquipment = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.insertedId){
+                if (data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "Your Equipment Updated Successfully",
                         showConfirmButton: false,
                         timer: 2000
-                      });
+                    });
                 }
                 e.target.reset();
             });
