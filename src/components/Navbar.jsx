@@ -1,22 +1,39 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../context/AuthContext";
 import auth from "../firebase.config";
 import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
+import { themeChange } from "theme-change";
 
 const Navbar = () => {
 
+    useEffect(() => {
+        themeChange(false)
+    }, [])
+
     const { user } = useContext(authContext)
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+        signOut(auth)
+        toast.success('Log Out Successfully')
+        navigate('/')
+    }
 
     const navLink = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/allEquipments'>All Equipment</Link></li>
-        <li><Link to='/addEquipment'>Add Equipment</Link></li>
-        <li><Link to={user?.email}>My Equipment</Link></li>
+        {
+            user && <>
+                <li><Link to='/addEquipment'>Add Equipment</Link></li>
+                <li><Link to={user?.email}>My Equipment</Link></li>
+            </>
+        }
     </>
 
     return (
-        <div className="bg-orange-50 sticky top-0 z-50">
+        <div className="bg-base-200 sticky top-0 z-50">
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -47,12 +64,15 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
+                <div>
+                    <button data-toggle-theme="dark,light" data-act-class="ACTIVECLASS">S</button>
+                </div>
                 <>
                     {
-                        user ?  <div className="navbar-end gap-6">
-                            <p> {user.email} </p>
-                            <button onClick={()=> signOut(auth)} className="btn btn-warning">Logout</button>
-                                </div> :
+                        user ? <div className="navbar-end gap-6">
+                            <img className="rounded-full w-12 h-12 object-cover" src={user.photoURL} alt="" />
+                            <button onClick={handleLogOut} className="btn btn-warning">Logout</button>
+                        </div> :
                             <div className="navbar-end gap-6">
                                 <Link className="btn btn-primary" to='/login'>Login</Link>
                                 <Link className="btn btn-secondary" to='/signup'>Sign Up</Link>

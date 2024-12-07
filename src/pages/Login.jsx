@@ -1,7 +1,13 @@
 import { useContext } from "react";
 import { authContext } from "../context/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 const Login = () => {
+
+    const location = useLocation();
+    const navigate = useNavigate()
 
     const { handelLogin, handelGoogleLogin } = useContext(authContext)
 
@@ -13,13 +19,20 @@ const Login = () => {
         const formData = { email, password }
         console.log(formData);
         handelLogin(email, password)
-            .then(user => console.log(user))
-            .catch(error => console.log(error.message))
+            .then( ({user}) => {
+                toast.success(user.email + " Login Successfully");
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => toast.warn(error.message))
     }
+
     const googleLogin = () => {
         handelGoogleLogin()
-            .then(user => console.log(user))
-            .catch(error => console.log(error.message))
+            .then(({user}) => {
+                toast.success(user.email + " Google Login Successfully");
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => toast.warn(error.message))
     }
 
     return (

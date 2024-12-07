@@ -9,6 +9,7 @@ import AddEquipment from "../pages/AddEquipment";
 import ViewDetails from "../pages/ViewDetails";
 import MyEquipment from "../pages/MyEquipment";
 import Update from "../pages/Update";
+import PrivetRoute from "./PrivetRoute";
 
 const Router = createBrowserRouter([
     {
@@ -21,7 +22,8 @@ const Router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Home />,
+                loader: () => fetch('http://localhost:5000/equipments')
             },
             {
                 path: 'login',
@@ -38,11 +40,15 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/addEquipment',
-                element: <AddEquipment />
+                element: <PrivetRoute>
+                    <AddEquipment />
+                </PrivetRoute>
             },
             {
                 path: '/details/:itemName',
-                element: <ViewDetails />,
+                element: <PrivetRoute>
+                    <ViewDetails />
+                </PrivetRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/details/${params.itemName}`)
             },
             {

@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { authContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
 
-    const { handleRegister, handelGoogleLogin } = useContext(authContext)
+    const { handleRegister, handelGoogleLogin, updateUserProfile } = useContext(authContext)
+    const navigate = useNavigate()
 
     const handleUserSignUp = e => {
         e.preventDefault();
@@ -11,16 +14,49 @@ const SignUp = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const formData = { email, password, name }
+        const photoUrl = form.photoUrl.value;
+        const formData = { email, password, name, photoUrl }
+
+        console.log(formData);
+
+        if (password.length < 6) {
+            toast.warn('Password at least 6 character')
+            return;
+        }
+        if (!/[A-Z]/.test(password)) {
+            toast.warn('Password must be one Uppercase letter')
+            return;
+        }
+        if (!/[a-z]/.test(password)) {
+            toast.warn('Password must be one Lowercase letter')
+            return;
+        }
         handleRegister(email, password)
-            .then(user => console.log(user))
-            .catch(error => console.log(error.message))
+            .then(( user ) => {
+                toast.success(user.email + " Sign-Up Successfully");
+                updateUserProfile({
+                    displayName: name,
+                    photoURL: photoUrl,
+                })
+                    .then(() => {
+                        navigate('/')
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        toast(error.message);
+                    })
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            })
     }
 
     const googleLogin = () => {
         handelGoogleLogin()
-        .then(user => console.log(user))
-        .catch(error => console.log(error.message))
+            .then(user => {
+                toast.success(user.email + " Google Login Successfully")
+            })
+            .catch(error => toast.warn(error.message))
     }
 
     return (
@@ -48,6 +84,12 @@ const SignUp = () => {
                                     type="password"
                                     name="password"
                                     placeholder="Password"
+                                />
+                                <input
+                                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                    type="url"
+                                    name="photoUrl"
+                                    placeholder="Your Photo Url"
                                 />
                                 <button className="tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                     <svg

@@ -2,8 +2,6 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase.config";
 
-
-
 // eslint-disable-next-line react-refresh/only-export-components
 export const authContext = createContext();
 
@@ -29,17 +27,12 @@ const AuthContext = ({ children }) => {
 
     }
 
-
     // Google Login 
     const handelGoogleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
-    // Forgot password
-    const handelForgetPassword = (email) => {
-        return sendPasswordResetEmail(auth, email)
-    }
 
     // Update Profile 
     const updateUserProfile = (updateData) => {
@@ -61,7 +54,6 @@ const AuthContext = ({ children }) => {
         handleRegister,
         handelLogin,
         handelGoogleLogin,
-        handelForgetPassword,
         updateUserProfile,
         user,
         loading,

@@ -3,11 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 const AllEquipment = () => {
 
     const equipmentsLoader = useLoaderData()
-
-    // const { stockStatus, processingTime, rating, price, categoryName, itemName } = equipmentsLoader;
-
-    console.log(equipmentsLoader);
-
+    
     return (
         <div className="py-10">
             <h2 className="text-center text-xl">All Equipments {equipmentsLoader.length} </h2>
