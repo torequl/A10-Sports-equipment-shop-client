@@ -5,7 +5,7 @@ const ViewDetails = () => {
     return (
 
         <div className="max-w-4xl my-10 mx-auto p-6 bg-base-100 border rounded-md">
-            <div className="flex flex-col lg:flex-row gap-6">}
+            <div className="flex flex-col lg:flex-row gap-6">
                 <div className="flex-shrink-0 w-full lg:w-1/3">
                     <img
                         src={loadedDetails.imageUrl}

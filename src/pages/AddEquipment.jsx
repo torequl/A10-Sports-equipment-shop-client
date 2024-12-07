@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { authContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 
 const AddEquipment = () => {
@@ -44,7 +45,15 @@ const AddEquipment = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if(data.insertedId){
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your Equipment Updated Successfully",
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                }
                 e.target.reset();
             });
 
@@ -217,7 +226,7 @@ const AddEquipment = () => {
                 {/* Submit Button */}
                 <div className="form-control">
                     <button type="submit" className="btn btn-primary w-full">
-                        Submit Equipment
+                        Add New Equipment
                     </button>
                 </div>
             </form>

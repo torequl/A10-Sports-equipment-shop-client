@@ -38,7 +38,7 @@ const AllEquipment = () => {
                                     <td>{e.processingTime}</td>
                                     <td>{e.price}</td>
                                     <td>
-                                        <Link to={`/details/${e._id}`} className="btn btn-xs">View Details</Link>
+                                        <Link to={`/details/${e.itemName}`} className="btn btn-xs">View Details</Link>
                                     </td>
                                 </tr>
                             )

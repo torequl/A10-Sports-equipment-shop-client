@@ -1,26 +1,45 @@
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyEquipment = () => {
     const loadedUserAddedData = useLoaderData();
     const [userEquipments, setUserEquipments] = useState(loadedUserAddedData);
 
     const handelDelete = id => {
-        console.log(id);
-        fetch(`http://localhost:5000/delete/${id}`,{
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            const remaining = userEquipments.filter(data => data._id !== id);
-            setUserEquipments(remaining)
-        })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/delete/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            const remaining = userEquipments.filter(data => data._id !== id);
+                            setUserEquipments(remaining)
+                        }
+                    })
+            }
+        });
+
     }
 
     return (
         <>
-            <h2>My Equipments {userEquipments.length}</h2>
+            <h2 className="text-2xl font-bold text-center mt-10">My Equipments ({userEquipments.length})</h2>
             <div className="flex flex-wrap gap-5 my-10">
                 {
                     userEquipments.map(data =>
@@ -56,7 +75,6 @@ const MyEquipment = () => {
                                     <Link
                                         to={`/update/${data._id}`}
                                         className="btn btn-primary btn-sm"
-                                    // onClick={() => onUpdate(data._id)}
                                     >
                                         Update
                                     </Link>
