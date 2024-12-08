@@ -12,13 +12,11 @@ import Update from "../pages/Update";
 import PrivetRoute from "./PrivetRoute";
 
 const Router = createBrowserRouter([
-    {
-        path: '*',
-        element: <Error />,
-    },
+
     {
         path: '/',
         element: <Layout />,
+        // errorElement: <Error />,
         children: [
             {
                 path: '/',
@@ -52,7 +50,7 @@ const Router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://assignment-10-server-roan-eight.vercel.app/details/${params.itemName}`)
             },
             {
-                path: '/:email',
+                path: '/myEquipment/:email',
                 element: <PrivetRoute>
                     <MyEquipment />
                 </PrivetRoute>,
@@ -66,6 +64,10 @@ const Router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://assignment-10-server-roan-eight.vercel.app/update/${params.id}`)
             },
         ]
+    },
+    {
+        path: '*',
+        element: <Error></Error>
     }
 ])
 

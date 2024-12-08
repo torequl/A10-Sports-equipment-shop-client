@@ -23,13 +23,13 @@ const Navbar = () => {
         {
             user && <>
                 <li><Link to='/addEquipment'>Add Equipment</Link></li>
-                <li><Link to={user?.email}>My Equipment</Link></li>
+                <li><Link to={`/myEquipment/${user?.email}`}>My Equipment</Link></li>
             </>
         }
     </>
 
     return (
-        <div className="bg-base-200 sticky top-0 z-50 dark:bg-gray-700 dark:text-white">
+        <div className="bg-base-200 sticky top-0 z-40 dark:bg-gray-700 dark:text-white">
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -64,7 +64,7 @@ const Navbar = () => {
                     {
                         user ? <div className="flex gap-6">
                             <ThemeToggle/>
-                            <a data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName}>
+                            <a  data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName}>
                             <img className="rounded-full cursor-pointer w-12 h-12 object-cover" src={user.photoURL} alt="" />
                             </a>
                             <button onClick={handleLogOut} className="btn btn-warning">Logout</button>

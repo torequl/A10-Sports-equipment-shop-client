@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthContext>
       <RouterProvider router={Router} />
-      <Tooltip id="my-tooltip" />
+      <Tooltip id="my-tooltip" style={{zIndex: 9999}}/>
       <ToastContainer position="top-center" autoClose={2000} />
     </AuthContext>
   </StrictMode>,
