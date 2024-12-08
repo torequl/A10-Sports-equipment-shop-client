@@ -4,6 +4,7 @@ import { authContext } from "../context/AuthContext";
 import auth from "../firebase.config";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
+import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
 
     const { user } = useContext(authContext)
@@ -18,6 +19,7 @@ const Navbar = () => {
     const navLink = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/allEquipments'>All Equipment</Link></li>
+        <ThemeToggle/>
         {
             user && <>
                 <li><Link to='/addEquipment'>Add Equipment</Link></li>
