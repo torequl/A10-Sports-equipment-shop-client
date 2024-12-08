@@ -1,16 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../context/AuthContext";
 import auth from "../firebase.config";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
-import { themeChange } from "theme-change";
-
 const Navbar = () => {
-
-    useEffect(() => {
-        themeChange(false)
-    }, [])
 
     const { user } = useContext(authContext)
     const navigate = useNavigate()
@@ -57,15 +51,12 @@ const Navbar = () => {
                             {navLink}
                         </ul>
                     </div>
-                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100">Sports</Link>
+                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 font-bold">Sports</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {navLink}
                     </ul>
-                </div>
-                <div>
-                    <button data-toggle-theme="dark,light" data-act-class="ACTIVECLASS">S</button>
                 </div>
                 <>
                     {

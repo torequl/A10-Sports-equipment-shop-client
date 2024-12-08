@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 
 const equipmentCard = ({ equipment }) => {
-    
+console.log(equipment);    
 
     return (
         <Fade>
             <div className="max-w-sm bg-base-100 border rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-200">
 
-                <a data-tooltip-id="my-tooltip" data-tooltip-content={`Description: ${equipment.description}`}>
+                <a data-tooltip-id="my-tooltip" data-tooltip-content={`Processing Time: ${equipment.processingTime}`}>
                 <Tooltip id="my-tooltip" />
                     <img
                         src={equipment.imageUrl}
