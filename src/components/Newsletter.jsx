@@ -2,16 +2,16 @@ import { FaFacebook, FaInstagram, FaPinterestP, FaTwitter } from "react-icons/fa
 
 const Newsletter = () => {
     return (
-        <div className="flex border w-8/12 mx-auto my-20">
-            <div className="w-1/2">
+        <div className="flex border flex-col md:flex-row w-full md:w-8/12 mx-auto my-20">
+            <div className="w-full md:w-1/2">
                 <img
                     src="https://demo1.leotheme.com/bos_gymgear_demo/themes/bos_gymgear/assets/img/modules/appagebuilder/images/banner_5_h1.jpg"
                     alt=""
                     className="w-full h-full object-cover"
                 />
             </div>
-            <div className="w-1/2 bg-white p-8">
-                <h2 className="text-4xl font-bold mb-3">JOIN OUR NEWSLETTER</h2>
+            <div className="w-full md:w-1/2 bg-white p-8">
+                <h2 className="text-lx md:text-4xl font-bold mb-3">JOIN OUR NEWSLETTER</h2>
                 <p className="mb-6">
                     Make sure that you never miss our interesting news and exclusive
                     promotion. No spam, Ever!
