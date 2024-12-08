@@ -19,7 +19,7 @@ const Navbar = () => {
     const navLink = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/allEquipments'>All Equipment</Link></li>
-        <ThemeToggle/>
+        
         {
             user && <>
                 <li><Link to='/addEquipment'>Add Equipment</Link></li>
@@ -33,7 +33,7 @@ const Navbar = () => {
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="lg:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -49,29 +49,31 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 shadow">
                             {navLink}
                         </ul>
                     </div>
-                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 dark:text-black font-bold">Sports</Link>
+                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 hidden md:flex dark:text-black font-bold">Sports</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {navLink}
                     </ul>
                 </div>
-                <>
+                <div className="navbar-end">
                     {
-                        user ? <div className="navbar-end gap-6">
+                        user ? <div className="flex gap-6">
+                            <ThemeToggle/>
                             <img className="rounded-full w-12 h-12 object-cover" src={user.photoURL} alt="" />
                             <button onClick={handleLogOut} className="btn btn-warning">Logout</button>
                         </div> :
-                            <div className="navbar-end gap-6">
+                            <div className="flex gap-6">
+                                <ThemeToggle/>
                                 <Link className="btn btn-primary" to='/login'>Login</Link>
                                 <Link className="btn btn-secondary" to='/signup'>Sign Up</Link>
                             </div>
                     }
-                </>
+                </div>
             </div>
         </div>
     );

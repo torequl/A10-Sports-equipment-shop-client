@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { IoToggle } from "react-icons/io5";
+import { LiaToggleOffSolid } from "react-icons/lia";
 
 
 const ThemeToggle = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-    // Toggle between dark and light mode
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
@@ -12,7 +13,6 @@ const ThemeToggle = () => {
         document.documentElement.classList.toggle("dark", newTheme === "dark");
     };
 
-    // Apply saved theme on initial load
     useEffect(() => {
         if (theme === "dark") {
             document.documentElement.classList.add("dark");
@@ -23,10 +23,10 @@ const ThemeToggle = () => {
 
     return (
         <button
-            className="btn btn-sm btn-primary"
+            className="text-4xl text-black dark:text-white"
             onClick={toggleTheme}
         >
-            {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+            {theme === "light" ? <LiaToggleOffSolid /> : <IoToggle />}
         </button>
     );
 };

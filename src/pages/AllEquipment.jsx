@@ -1,12 +1,23 @@
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllEquipment = () => {
 
     const equipmentsLoader = useLoaderData()
+
+    const [equipments, setEquipments] = useState(equipmentsLoader)
+
+    const handleSort = () => {
+        const sorted = [...equipments].sort((a, b) => a.price - b.price);
+        setEquipments(sorted);
+    }
     
     return (
         <div className="py-10">
-            <h2 className="text-center text-xl">All Equipments {equipmentsLoader.length} </h2>
+            <div className="flex justify-between w-10/12 mx-auto items-center">
+            <h2 className="text-center uppercase font-bold text-xl">All Equipments {equipments.length} </h2>
+            <button onClick={handleSort} className="btn btn-warning">Sort By Price</button>
+            </div>
             <div className="overflow-x-auto w-10/12 mx-auto border my-10 rounded-sm">
                 <table className="table">
                     {/* head */}
@@ -24,7 +35,7 @@ const AllEquipment = () => {
                     </thead>
                     <tbody>
                         {
-                            equipmentsLoader.map((e, index) => 
+                            equipments.map((e, index) => 
                                 <tr key={e._id} className="hover">
                                     <th>{index + 1}</th>
                                     <td>{e.itemName}</td>

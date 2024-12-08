@@ -44,7 +44,7 @@ const MyEquipment = () => {
                 {
                     userEquipments.map(data =>
 
-                        <div key={data._id} className="max-w-sm mx-auto bg-base-100 border rounded-md overflow-hidden">
+                        <div key={data._id} className="max-w-sm mx-auto dark:bg-gray-900 dark:text-white border rounded-md overflow-hidden">
                             <img
                                 src={data.imageUrl}
                                 alt={data.itemName}
