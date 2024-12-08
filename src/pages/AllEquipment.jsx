@@ -8,7 +8,7 @@ const AllEquipment = () => {
         <div className="py-10">
             <h2 className="text-center text-xl">All Equipments {equipmentsLoader.length} </h2>
             <div className="overflow-x-auto w-10/12 mx-auto border my-10 rounded-sm">
-                <table className="table bg-white">
+                <table className="table">
                     {/* head */}
                     <thead className="bg-yellow-100 text-base">
                         <tr>

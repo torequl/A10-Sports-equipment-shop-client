@@ -29,7 +29,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="bg-base-200 sticky top-0 z-50">
+        <div className="bg-base-200 sticky top-0 z-50 dark:bg-gray-700 dark:text-white">
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -49,11 +49,11 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {navLink}
                         </ul>
                     </div>
-                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 font-bold">Sports</Link>
+                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 dark:text-black font-bold">Sports</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

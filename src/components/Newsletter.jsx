@@ -10,7 +10,7 @@ const Newsletter = () => {
                     className="w-full h-full object-cover"
                 />
             </div>
-            <div className="w-full md:w-1/2 bg-white p-8">
+            <div className="w-full md:w-1/2 bg-white dark:bg-gray-900 p-8">
                 <h2 className="text-lx md:text-4xl font-bold mb-3">JOIN OUR NEWSLETTER</h2>
                 <p className="mb-6">
                     Make sure that you never miss our interesting news and exclusive
@@ -26,7 +26,7 @@ const Newsletter = () => {
                         JOIN
                     </button>
                 </div>
-                <div className="text-black">
+                <div className="dark:text-white">
                     Connect us on
                     <div className="flex gap-2 mt-2 text-2xl">
                         <a href="#" className="text-blue-600">
