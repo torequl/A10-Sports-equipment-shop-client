@@ -1,7 +1,7 @@
 
 const Error = () => {
     return (
-        <div>
+        <div className="h-screen flex justify-center items-center">
             Error
         </div>
     );

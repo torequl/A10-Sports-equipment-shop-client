@@ -36,7 +36,7 @@ const AddEquipment = () => {
             stockStatus
         }
 
-        fetch('http://localhost:5000/equipments', {
+        fetch('https://assignment-10-server-roan-eight.vercel.app/equipments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +60,7 @@ const AddEquipment = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-8 bg-base-100 border rounded-md my-10">
+        <div className="max-w-4xl mx-auto p-8 border rounded-md my-10">
             <h1 className="text-2xl font-bold text-center mb-6">Add New Equipment</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex justify-between">
@@ -72,7 +72,7 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="imageUrl"
-                            className="input input-bordered"
+                            className="input input-bordered text-black"
                             placeholder="Enter image URL"
                         />
                     </div>
@@ -85,7 +85,7 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="itemName"
-                            className="input input-bordered"
+                            className="input input-bordered text-black"
                             placeholder="Enter item name"
                         />
                     </div>
@@ -100,7 +100,7 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="categoryName"
-                            className="input input-bordered "
+                            className="input input-bordered text-black "
                             placeholder="Enter category name"
                         />
                     </div>
@@ -112,7 +112,7 @@ const AddEquipment = () => {
                         </label>
                         <textarea
                             name="description"
-                            className="textarea textarea-bordered "
+                            className="textarea text-black textarea-bordered "
                             placeholder="Enter description"
                         ></textarea>
                     </div>
@@ -127,7 +127,7 @@ const AddEquipment = () => {
                         <input
                             type="number"
                             name="price"
-                            className="input input-bordered "
+                            className="input input-bordered text-black "
                             placeholder="Enter price"
                         />
                     </div>
@@ -140,7 +140,7 @@ const AddEquipment = () => {
                         <input
                             type="number"
                             name="rating"
-                            className="input input-bordered "
+                            className="input input-bordered text-black "
                             placeholder="Enter rating (1-5)"
                             min="1"
                             max="5"
@@ -157,7 +157,7 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="customization"
-                            className="input input-bordered "
+                            className="input input-bordered text-black "
                             placeholder="Enter customization options"
                         />
                     </div>
@@ -170,7 +170,7 @@ const AddEquipment = () => {
                         <input
                             type="text"
                             name="processingTime"
-                            className="input input-bordered "
+                            className="input input-bordered text-black "
                             placeholder="Enter processing time (e.g., 3-5 days)"
                         />
                     </div>
@@ -186,7 +186,7 @@ const AddEquipment = () => {
                             type="number"
                             name="stockStatus"
 
-                            className="input input-bordered "
+                            className="input input-bordered text-black "
                             placeholder="Enter available quantity"
 
                         />
@@ -203,7 +203,7 @@ const AddEquipment = () => {
 
                             value={user?.email}
                             readOnly
-                            className="input input-bordered  bg-gray-100"
+                            className="input input-bordered text-black  bg-gray-100"
                         />
                     </div>
                 </div>
@@ -219,7 +219,7 @@ const AddEquipment = () => {
 
                         value={user?.displayName}
                         readOnly
-                        className="input input-bordered  bg-gray-100"
+                        className="input input-bordered text-black  bg-gray-100"
                     />
                 </div>
 

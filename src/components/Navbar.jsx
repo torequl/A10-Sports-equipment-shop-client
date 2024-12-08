@@ -64,7 +64,9 @@ const Navbar = () => {
                     {
                         user ? <div className="flex gap-6">
                             <ThemeToggle/>
-                            <img className="rounded-full w-12 h-12 object-cover" src={user.photoURL} alt="" />
+                            <a data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName}>
+                            <img className="rounded-full cursor-pointer w-12 h-12 object-cover" src={user.photoURL} alt="" />
+                            </a>
                             <button onClick={handleLogOut} className="btn btn-warning">Logout</button>
                         </div> :
                             <div className="flex gap-6">

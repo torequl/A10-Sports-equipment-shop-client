@@ -48,7 +48,7 @@ const Update = () => {
             confirmButtonText: "Yes, Update it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/update/${_id}`, {
+                fetch(`https://assignment-10-server-roan-eight.vercel.app/update/${_id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

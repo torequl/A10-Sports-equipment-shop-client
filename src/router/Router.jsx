@@ -23,7 +23,7 @@ const Router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/equipments')
+                loader: () => fetch('https://assignment-10-server-roan-eight.vercel.app/equipments')
             },
             {
                 path: 'login',
@@ -36,7 +36,7 @@ const Router = createBrowserRouter([
             {
                 path: '/allEquipments',
                 element: <AllEquipment />,
-                loader: () => fetch('http://localhost:5000/equipments')
+                loader: () => fetch('https://assignment-10-server-roan-eight.vercel.app/equipments')
             },
             {
                 path: '/addEquipment',
@@ -49,17 +49,21 @@ const Router = createBrowserRouter([
                 element: <PrivetRoute>
                     <ViewDetails />
                 </PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.itemName}`)
+                loader: ({ params }) => fetch(`https://assignment-10-server-roan-eight.vercel.app/details/${params.itemName}`)
             },
             {
                 path: '/:email',
-                element: <MyEquipment />,
-                loader: ({ params }) => fetch(`http://localhost:5000/${params?.email}`)
+                element: <PrivetRoute>
+                    <MyEquipment />
+                </PrivetRoute>,
+                loader: ({ params }) => fetch(`https://assignment-10-server-roan-eight.vercel.app/${params?.email}`)
             },
             {
                 path: '/update/:id',
-                element: <Update />,
-                loader: ({ params }) => fetch(`http://localhost:5000/update/${params.id}`)
+                element: <PrivetRoute>
+                    <Update />
+                </PrivetRoute>,
+                loader: ({ params }) => fetch(`https://assignment-10-server-roan-eight.vercel.app/update/${params.id}`)
             },
         ]
     }

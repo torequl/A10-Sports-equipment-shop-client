@@ -4,7 +4,7 @@ const ViewDetails = () => {
     const loadedDetails = useLoaderData()
     return (
 
-        <div className="max-w-4xl my-10 mx-auto p-6 bg-base-100 border rounded-md">
+        <div className="max-w-4xl my-10 mx-auto p-6 border rounded-md">
             <div className="flex flex-col lg:flex-row gap-6">
                 <div className="flex-shrink-0 w-full lg:w-1/3">
                     <img
@@ -15,10 +15,10 @@ const ViewDetails = () => {
                 </div>
 
                 <div className="flex-grow">
-                    <h1 className="text-3xl font-bold text-primary mb-2">
+                    <h1 className="text-3xl font-bold text-primary dark:text-yellow-200 mb-2">
                         {loadedDetails.itemName}
                     </h1>
-                    <p className="text-sm text-gray-500 mb-4">Category: {loadedDetails.categoryName}</p>
+                    <p className="text-sm text-gray-500 dark:text-white mb-4">Category: {loadedDetails.categoryName}</p>
                     <p className="text-base mb-4">{loadedDetails.description}</p>
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
