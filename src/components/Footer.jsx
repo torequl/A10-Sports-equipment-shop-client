@@ -1,16 +1,11 @@
-import { Link } from "react-router-dom";
+import logo from '../assets/sports-logo.png'
 
 const Footer = () => {
     return (
-        <div className="bg-base-200 pt-56 dark:bg-gray-700 dark:text-white">
+        <div className="bg-base-200 border-t-2 border-red-500 dark:bg-gray-700 dark:text-white">
             <footer className="footer mx-auto w-11/12 bg-base-200 text-base-content p-10 dark:bg-gray-700 dark:text-white">
                 <aside>
-                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 font-bold">Sports Equipment Shop</Link>
-                    <p>
-                    Sports Equipment Shop
-                        <br />
-                        Providing reliable service since 1992
-                    </p>
+                    <img src={logo} alt="Sports Logo" />
                 </aside>
                 <nav>
                     <h6 className="footer-title">Services</h6>

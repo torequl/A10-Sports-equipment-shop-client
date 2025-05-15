@@ -15,7 +15,7 @@ const AllEquipment = () => {
     return (
         <div className="py-10">
             <div className="flex justify-between w-10/12 mx-auto items-center">
-            <h2 className="text-center uppercase font-bold text-xl">All Equipments {equipments.length} </h2>
+            <h2 className="text-center uppercase font-bold text-xl">All Equipments ({equipments.length}) </h2>
             <button onClick={handleSort} className="btn btn-warning">Sort By Price</button>
             </div>
             <div className="overflow-x-auto w-10/12 mx-auto border my-10 rounded-sm">
@@ -45,7 +45,7 @@ const AllEquipment = () => {
                                     <td>{e.processingTime}</td>
                                     <td>{e.price}</td>
                                     <td>
-                                        <Link to={`/details/${e.itemName}`} className="btn btn-xs">View Details</Link>
+                                        <Link to={`/details/${e.itemName}`} className="btn btn-xs btn-outline">View Details</Link>
                                     </td>
                                 </tr>
                             )

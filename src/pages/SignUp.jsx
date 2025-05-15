@@ -61,7 +61,7 @@ const SignUp = () => {
 
     const googleLogin = () => {
         handelGoogleLogin()
-            .then(user => {
+            .then(({user}) => {
                 toast.success(user.email + " Google Login Successfully")
             })
             .catch(error => toast.warn(error.message))

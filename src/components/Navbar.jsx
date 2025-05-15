@@ -5,6 +5,7 @@ import auth from "../firebase.config";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import ThemeToggle from "./ThemeToggle";
+import logo from "../assets/sports-logo.png"
 const Navbar = () => {
 
     const { user } = useContext(authContext)
@@ -49,11 +50,11 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 shadow">
+                            className="menu bg-yellow-50 text-black menu-md dropdown-content z-[1] mt-3 w-52 shadow">
                             {navLink}
                         </ul>
                     </div>
-                    <Link to='/' className="text-xl py-2 px-4 bg-yellow-100 hidden md:flex dark:text-black font-bold">Sports</Link>
+                    <img className="w-24" src={logo} alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
